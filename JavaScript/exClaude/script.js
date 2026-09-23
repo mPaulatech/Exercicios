@@ -115,3 +115,55 @@ function emailValido(email){
 }
 
 console.log(emailValido("smariapaula0625@gmail.com"));
+
+
+
+// 11.
+const products = [
+    {name: "Maça", price: 2.5, stock: 5},
+    {name: "Coca Cola", price: 8, stock: 2},
+    {name: "Guarana", price: 5, stock: 4},
+    {name: "Chocolate", price: 20, stock: 10}
+];
+
+const total = products.reduce((acc, p) => acc + p.stock, 0);
+const caros = products.filter(p => p.price > 5).map(p => p.name);
+
+console.log(total);
+console.log(caros);
+
+// 12.
+function buscarProduto(id){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const encontrado = products.find(p => p.id === id);
+      encontrado ? resolve(encontrado) : reject("Não encontrado");
+    }, 1000);
+  });
+}
+
+// 13.
+async function nutriApp(){
+  try {
+    const r = await fetch("https://sujeitoprogramador.com/rn-api/?api=posts");
+    const posts = await r.json();
+    posts.map((item) => { /* montagem do DOM */ });
+  } catch {
+    console.log("Algo está errado!!");
+  }
+}
+
+// 14.
+class Pessoa {
+  constructor(nome, cargo){
+    this.nome = nome;
+    this.cargo = cargo;
+  }
+  apresentar(){
+    return `Me chamo ${this.nome} e trabalho como ${this.cargo}`;
+  }
+}
+
+// 15.
+const mapaProdutos = new Map(products.map(p => [p.name, p.price]));
+console.log(mapaProdutos.get("Guarana"));
